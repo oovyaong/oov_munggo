@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>navi</title>
+<!-- a09911c4aafe7c23c58583c57e05cf34 -->
+<!-- <script type="text/javascript" src="/resources/js/n.sdk.js?appkey=a09911c4aafe7c23c58583c57e05cf34"></script> -->
+<script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js?appkey=a09911c4aafe7c23c58583c57e05cf34"></script>
+<script src="http://119.196.166.86:8084/socket.io/socket.io.js"></script>
+</head>
+<body ontouchstart>
+
+    <a id="navi" href="#" onclick="navi();">
+        <img
+          src="https://developers.kakao.com/assets/img/about/buttons/navi/kakaonavi_btn_medium.png"
+        />
+      </a>
+      <script type="text/javascript">
+
+        Kakao.init('a09911c4aafe7c23c58583c57e05cf34');
+        var socket = io.connect('http://119.196.166.86:8084');
+        function navi() {
+          var navi = new Kakao.Navi.start({
+            name: '현대백화점 판교점',
+            x: 127.11205203011632,
+            y: 37.39279717586919,
+            coordType: 'wgs84',
+            rpOption:5
+          });
+          console.log(navi);
+          socket.emit("io", {name:"navi", navi:navi});
+        }
+      </script>
+      
+</body>
+</html>
+<!-- 
+api
+https://developers.kakao.com/sdk/reference/js/release/Kakao.Navi.html#.share__anchor
+ -->

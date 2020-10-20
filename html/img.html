@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+    <style>
+		img {width:100%}
+    </style>
+</head>
+<body>
+
+<div class="">
+   <img id="img" src="" alt="">
+</div>
+
+
+
+<div class="log"></div>
+<script src="http://119.196.166.86:8084/socket.io/socket.io.js"></script>
+<script>
+var imgEl = document.getElementById("img");
+var socket = io.connect('http://119.196.166.86:8084');
+socket.on('io', function (data) {
+    try {
+        var data = data;
+        var id = data.msg.id;
+        
+        if(id == "pi"){
+            var dataUrl = data.msg.dataUrl;
+            console.log(dataUrl);
+            imgEl.src = dataUrl;
+        }
+        
+    } catch (e) {}
+    
+});
+
+
+
+
+</script>
+</body>
+</html>
